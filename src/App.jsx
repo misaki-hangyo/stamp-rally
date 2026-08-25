@@ -74,6 +74,7 @@ useEffect(() => {
   setStampCount(collected.length);
 }, [collected]);
 
+useEffect(() => {
   const watchId = navigator.geolocation.watchPosition(
     (position) => {
       const lat = position.coords.latitude;
