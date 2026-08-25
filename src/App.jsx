@@ -59,10 +59,21 @@ function getDistance(lat1, lng1, lat2, lng2) {
 
 function App() {
   const [stampCount, setStampCount] = useState(0);
-  const [collected, setCollected] = useState([]);
+  const [collected, setCollected] = useState(() => {
+  const saved = localStorage.getItem("collected");
+  return saved ? JSON.parse(saved) : [];
+});
   const [currentPosition, setCurrentPosition] = useState(null);
   
 useEffect(() => {
+  localStorage.setItem(
+    "collected",
+    JSON.stringify(collected)
+  );
+
+  setStampCount(collected.length);
+}, [collected]);
+
   const watchId = navigator.geolocation.watchPosition(
     (position) => {
       const lat = position.coords.latitude;
