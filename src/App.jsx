@@ -133,6 +133,18 @@ useEffect(() => {
 )}
 
       </MapContainer>
+      <h2>スタンプ状況</h2>
+
+<ul>
+  {spots.map((spot) => (
+    <li key={spot.id}>
+      {collected.includes(spot.id)
+        ? "✅"
+        : "❌"}{" "}
+      {spot.name}
+    </li>
+  ))}
+</ul>
     </>
   );
 }
